@@ -2,7 +2,7 @@ from framework.consts import dir_static
 
 
 def application(environ, start_response):
-    url = environ['PATH_INFO']
+    url = environ["PATH_INFO"]
     if url == "/xxx/":
         status = "200 OK"
         headers = {
@@ -12,7 +12,7 @@ def application(environ, start_response):
         start_response(status, list(headers.items()))
 
         yield payload
-        #return None
+        # return None
     else:
 
         status = "200 OK"
@@ -29,7 +29,7 @@ def application(environ, start_response):
 def read_from_index_html():
     path = dir_static / "index.html"
 
-    with path.open('r') as fp:
+    with path.open("r") as fp:
         payload = fp.read()
     fp.close()
 
@@ -40,7 +40,7 @@ def read_from_index_html():
 def read_from_style_css():
     path = dir_static / "style.css"
 
-    with path.open('r') as fp:
+    with path.open("r") as fp:
         payload = fp.read()
     fp.close()
 
