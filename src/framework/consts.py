@@ -21,5 +21,3 @@ DIR_SRC = DIR_FRAMEWORK.parent.resolve()
 DIR_REPO = DIR_SRC.parent.resolve()
 
 DIR_STATIC = (DIR_REPO / "static").resolve()
-
-# dir_static = (Path(__file__).parent.parent / "static").resolve()
