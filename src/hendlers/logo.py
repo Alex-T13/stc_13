@@ -9,3 +9,4 @@ def handle_logo(_request: RequestT) -> ResponseT:
     headers = {"Content-type": "image/png"}
 
     return ResponseT(status, headers, payload)
+  
