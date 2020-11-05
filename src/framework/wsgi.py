@@ -32,3 +32,4 @@ def application(environ: dict, start_response):
     start_response(response.status, list(response.headers.items()))
 
     yield response.payload
+
