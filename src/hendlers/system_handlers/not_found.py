@@ -17,7 +17,9 @@ def handle_404(request: RequestT) -> ResponseT:
         f"<p>{escape(str(env_var_name))}</p>"
         f"<p>{format_env_var(env_var_name, env_var_value)}</p>"
         f"</div>"
-        for env_var_name, env_var_value in sorted(request.headers.items(), key=http_first)
+        for env_var_name, env_var_value in sorted(
+            request.headers.items(), key=http_first
+        )
     )
 
     base_html = read_static("_base.html", str)
