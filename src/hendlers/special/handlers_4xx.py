@@ -22,10 +22,10 @@ def handle_404(request: RequestT) -> ResponseT:
         )
     )
 
-    base_html = read_static("_base.html", str)
+    base_html = read_static("_base.html").content.decode()
 
     html_404 = f"""
-    <h1>404 OOPS! 404  :-(</h1>
+    <h1>OOPS!</h1>
         <hr>
         <h2>The path you've looking for does not exist on this server.</h2>
         <p class="url"><span>{url}</span></p>
