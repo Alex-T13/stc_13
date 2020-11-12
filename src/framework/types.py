@@ -4,6 +4,7 @@ from datetime import datetime
 from typing import Callable
 from typing import NamedTuple
 from typing import Optional
+
 from framework.consts import DATE_TIME_FMT
 from framework.consts import USER_TTL
 
@@ -32,6 +33,7 @@ HandlerT = Callable[[RequestT], ResponseT]
 class StaticT(NamedTuple):
     content: bytes
     content_type: str
+
 
 @dataclasses.dataclass
 class UserT:

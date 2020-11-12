@@ -46,6 +46,7 @@ def handle_hello_get(request: RequestT) -> ResponseT:
     )
     return resp
 
+
 def handle_hello_post(request: RequestT) -> ResponseT:
     assert request.method == "POST"
 

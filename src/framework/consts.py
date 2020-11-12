@@ -29,7 +29,7 @@ METHODS_WITH_REQUEST_BODY = {
 
 USERS_STORAGE = (DIR_STORAGE / "users.json").resolve()
 
-USER_COOKIE = "stc13user"   #"z37user"
+USER_COOKIE = "stc13user"  # "z37user"
 
 USER_TTL = timedelta(minutes=5)
 

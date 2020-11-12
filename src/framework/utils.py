@@ -9,6 +9,7 @@ from typing import Dict
 from typing import Optional
 from typing import Tuple
 from urllib.parse import parse_qs
+
 from framework import settings
 from framework.consts import DIR_STATIC
 from framework.consts import METHODS_WITH_REQUEST_BODY
@@ -119,6 +120,7 @@ def get_request_method(environ: dict) -> str:
 def get_request_path(environ: dict) -> str:
     path = environ.get("PATH_INFO", "/")
     return path
+
 
 def get_user_id(headers: Dict) -> Optional[str]:
     cookies = parse_qs(headers.get("COOKIE", ""))
