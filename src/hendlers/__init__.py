@@ -6,6 +6,7 @@ from framework.types import HandlerT
 
 from . import special
 from .error import handle_error
+from .hello import handle_cookies_user_del
 from .hello import handle_hello
 from .index import handle_index
 
@@ -15,6 +16,7 @@ urlpatterns: Dict[re.compile, HandlerT] = {
         "^/$": handle_index,
         "^/e/$": handle_error,
         "^/h/$": handle_hello,
+        "^/h/del/$": handle_cookies_user_del,
         "^/s/(?P<file_name>.+)$": special.handle_static,
     }.items()
 }

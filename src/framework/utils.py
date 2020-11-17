@@ -1,7 +1,10 @@
+import dataclasses
 import http
+import json
 import mimetypes
 import re
 from html import escape
+from http.cookies import SimpleCookie
 from pathlib import Path
 from typing import Any
 from typing import Callable
@@ -14,8 +17,10 @@ from framework import settings
 from framework.consts import DIR_STATIC
 from framework.consts import METHODS_WITH_REQUEST_BODY
 from framework.consts import USER_COOKIE
+from framework.consts import USER_DATA_FILE
 from framework.errors import NotFound
 from framework.types import StaticT
+from framework.types import UserDataT
 
 
 def http_first(value: Tuple[str, Any]) -> tuple:
@@ -54,8 +59,11 @@ def read_static(file_name: str) -> StaticT:
     with file_obj.open("rb") as fp:
         content = fp.read()
 
+    mimetypes.init()
     content_type = mimetypes.guess_type(file_name)[0]
 
+    if content_type is None:   # bead
+        content_type = "font/ttf"   # bead
     return StaticT(content=content, content_type=content_type)
 
 
@@ -122,9 +130,33 @@ def get_request_path(environ: dict) -> str:
     return path
 
 
+def save_user_data(user_data: UserDataT) -> None:
+    user_data_dct = dataclasses.asdict(user_data)
+
+    with USER_DATA_FILE.open("w") as fp:
+        json.dump(user_data_dct, fp, sort_keys=True, indent=2)
+
+
+def load_user_data() -> UserDataT:
+    if not USER_DATA_FILE.is_file():
+        return UserDataT()
+
+    with USER_DATA_FILE.open("r") as fp:
+        user_data_dct = json.load(fp)
+
+    user_data = UserDataT(**user_data_dct)
+    return user_data
+
+
 def get_user_id(headers: Dict) -> Optional[str]:
-    cookies = parse_qs(headers.get("COOKIE", ""))
-    user_id = cookies.get(USER_COOKIE, [None])[0]
+    cookies_header = headers.get("COOKIE", "")
+
+    cookies = SimpleCookie(cookies_header)
+
+    if USER_COOKIE not in cookies:
+        return None
+
+    user_id = cookies[USER_COOKIE].value
 
     return user_id
 

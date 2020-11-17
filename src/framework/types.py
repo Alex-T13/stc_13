@@ -36,6 +36,12 @@ class StaticT(NamedTuple):
 
 
 @dataclasses.dataclass
+class UserDataT:
+    name: Optional[str] = None
+    address: Optional[str] = None
+
+
+@dataclasses.dataclass
 class UserT:
     name: Optional[str] = None
     address: Optional[str] = None
