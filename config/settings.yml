@@ -36,4 +36,4 @@ ci:
 
 
 heroku:
-  HOST: "stc_13.herokuapp.com"
+  HOST: "stc-13.herokuapp.com"
