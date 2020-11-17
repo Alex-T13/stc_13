@@ -62,8 +62,8 @@ def read_static(file_name: str) -> StaticT:
     mimetypes.init()
     content_type = mimetypes.guess_type(file_name)[0]
 
-    if content_type is None:   # bead
-        content_type = "font/ttf"   # bead
+    if content_type is None:  # bead
+        content_type = "font/ttf"  # bead
     return StaticT(content=content, content_type=content_type)
 
 
