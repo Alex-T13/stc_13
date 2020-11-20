@@ -55,11 +55,13 @@ default:
   TEMPLATE_ENGINE: "Django"
   VENV_SYNTHETIC: false
   WEB_CONCURRENCY: 0
+  MODE_DEBUG = true
 
 
 development:
   HOST: "localhost"
   PORT: 8000
+  SECRET_KEY: "false"
   WEB_CONCURRENCY: 2
 
 
@@ -72,3 +74,4 @@ ci:
 
 heroku:
   HOST: "tms-z37.herokuapp.com"
+  MODE_DEBUG = false
