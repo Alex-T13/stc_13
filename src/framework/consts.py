@@ -27,6 +27,8 @@ METHODS_WITH_REQUEST_BODY = {
     "POST",
 }
 
+USER_DATA_FILE = (DIR_STORAGE / "user_data.json").resolve()
+
 USERS_STORAGE = (DIR_STORAGE / "users.json").resolve()
 
 USER_COOKIE = "stc13user"  # "z37user"
