@@ -15,7 +15,13 @@ from pathlib import Path
 from dynaconf import settings as _ds
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+
+_this_file = Path(__file__).resolve()
+DIR_PROJECT = _this_file.parent.resolve()
+DIR_SRC = DIR_PROJECT.parent.resolve()
+
+DIR_REPO = DIR_SRC.parent.resolve()
 
 
 # Quick-start development settings - unsuitable for production
@@ -53,6 +59,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -60,7 +67,7 @@ ROOT_URLCONF = "project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [DIR_PROJECT / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -82,7 +89,7 @@ WSGI_APPLICATION = "project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": DIR_SRC / "db.sqlite3",
     }
 }
 
@@ -123,4 +130,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "/s/"
+
+STATIC_ROOT = DIR_REPO / ".static"
+
+STATICFILES_DIRS = [
+    DIR_PROJECT / "static",
+]
+
+if not DEBUG:
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

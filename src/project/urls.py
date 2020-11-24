@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpRequest
+from django.http import HttpResponse
+from django.shortcuts import render
+
+
+def index(request: HttpRequest) -> HttpResponse:
+    result = render(request, "index.html")
+
+    return HttpResponse(result)
+
 
 urlpatterns = [
+    path("", index),
     path("admin/", admin.site.urls),
 ]
