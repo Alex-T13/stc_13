@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+import sentry_sdk
 from dynaconf import settings as _ds
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,6 +33,9 @@ SECRET_KEY = _ds.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = _ds.MODE_DEBUG
+
+if not DEBUG:
+    sentry_sdk.init(_ds.SENTRY_DSN, traces_sample_rate=1.0)
 
 ALLOWED_HOSTS = [
     "localhost",
