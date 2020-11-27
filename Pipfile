@@ -21,6 +21,7 @@ psycopg2-binary = "*"
 sentry-sdk = "*"
 whitenoise = "*"
 django = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.8"
