@@ -1,9 +1,9 @@
 {% extends "_base.html" %}
-<h2 id="greeting_display_id">Hello {{ name|default:"anonymous" }}</h2>
+{% block main %}
+  <h2 id="greeting_display_id">Hello {{ name|default:"anonymous" }}</h2>
   <p id="address_display_id">You are in {{ address|default:"nowhere" }}</p>
   <form action="/h/" method="post">
     {{ form.as_p }}
-
     <p>
       <button id="submit_id" type="submit">Send</button>
     </p>
