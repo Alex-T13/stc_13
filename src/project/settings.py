@@ -14,10 +14,8 @@ from pathlib import Path
 
 import dj_database_url
 import sentry_sdk
+from django.urls import reverse_lazy
 from dynaconf import settings as dyn
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
 
 _this_file = Path(__file__).resolve()
 DIR_PROJECT = _this_file.parent.resolve()
@@ -25,14 +23,8 @@ DIR_SRC = DIR_PROJECT.parent.resolve()
 
 DIR_REPO = DIR_SRC.parent.resolve()
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = dyn.SECRET_KEY
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = dyn.MODE_DEBUG
 
 if not DEBUG:
@@ -58,6 +50,7 @@ INSTALLED_APPS = [
     "applications.blog.apps.BlogConfig",
     "applications.landing.apps.LandingConfig",
     "applications.hello.apps.HelloConfig",
+    "applications.onboarding.apps.OnboardingConfig",
 ]
 
 MIDDLEWARE = [
@@ -118,6 +111,12 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+if DEBUG:
+    AUTH_PASSWORD_VALIDATORS = []
+
+LOGIN_URL = reverse_lazy("onboarding:sign-in")
+LOGIN_REDIRECT_URL = reverse_lazy("landing:index")
 
 
 # Internationalization

@@ -34,6 +34,12 @@ sh:
 	$(RUN) src/manage.py shell
 
 
+.PHONY: su
+su:
+	$(call log, starting Python shell)
+	$(RUN) src/manage.py createsuperuser
+
+
 .PHONY: venv
 venv:
 	$(call log, installing packages)
