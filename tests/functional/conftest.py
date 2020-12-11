@@ -1,14 +1,13 @@
 import pytest
 
-from tests.functional.utils import build_chrome
-from tests.functional.utils import build_firefox
+from tests.functional.util.browsers import BrowserFactory
 
 
 @pytest.yield_fixture(scope="session", autouse=True)
 def browser():
-    # _browser = build_chrome()
-    _browser = build_firefox()
+    instance = BrowserFactory.get_factory().build()
 
-    yield _browser
-    _browser.close()
-    _browser.quit()
+    yield instance
+
+    instance.close()
+    instance.quit()
