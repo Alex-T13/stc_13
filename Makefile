@@ -28,6 +28,12 @@ run-prod:
 	$(RUN) gunicorn --config="$(DIR_SCRIPTS)/gunicorn.conf.py" project.wsgi:application
 
 
+.PHONY: run-api
+run-api:
+	$(call log, starting local FastAPI server)
+	$(RUN) uvicorn --port 8888 fastapi.main:app
+
+
 .PHONY: sh
 sh:
 	$(call log, starting Python shell)
