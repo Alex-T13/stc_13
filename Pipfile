@@ -9,6 +9,7 @@ httpie = "*"
 ipython = "*"
 isort = "*"
 pudb = "*"
+pydevd-pycharm = "*"
 pytest = "*"
 pytest-mock = "*"
 pytest-selenium = "*"
@@ -18,10 +19,13 @@ delorean = "*"
 django = "*"
 dj-database-url = "*"
 dynaconf = { extras = ["yaml"], version = "*" }
+fastapi = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 pydantic = "*"
 sentry-sdk = "*"
+sqlalchemy = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 whitenoise = "*"
 
 
